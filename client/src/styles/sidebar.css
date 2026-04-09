@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    font-family: "Jost", sans-serif;
+    font-size: 42px;
+    padding: 0 32px;
+    background-color: #FFFFFF;
+    min-width: 200px;
+    max-width: 350px;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+}
+
+.logo-holder{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+    align-items: center
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+
+}
+
+h1{
+    font-size: 50px;
+    font-weight: 500;
+    padding-left: 12px;
+}
+
+.sidebar-menu{
+    display: flex;
+    font-size: 30px;
+    font-weight: 400;
+    color: #8E92BC;
+
+    padding: 38px;
+}
+ul{
+    display: flex;
+    flex-direction: column;
+    gap:24px
+}
+
+li:hover{
+    cursor: pointer;
+    background-color: #F5F5F7;
+}
+
+.menu-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    justify-content: flex-start;
+
+}
+.icon{
+    width: 30px;
+    height: 30px;
+}
+
+.help-card-center{
+    position: relative;
+    border-radius: 24px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+    min-height: 250px;
+    max-height: 500px;
+    h3, p{
+        padding: 20px ;
+        color: #fff;
+    }
+    p{
+        font-size: 20px;
+        padding-bottom: 50px;
+    }
+}
+
+.help-icon-badge{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.help-card-body{
+    background-color: #111322;
+    border-radius: 24px;
+}
+.help-card-button {
+    background: white;
+    border: none;
+    padding: 5px;
+    margin: 0 15px 15px 15px;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 30px;
+}
+.help-card-button:hover{
+    cursor: pointer;
+    background: #8E92BC;
+}

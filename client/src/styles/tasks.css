@@ -1,0 +1,92 @@
+/*Стилі сторінки*/
+.task-columns{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+    width: 100%;
+    padding: 35px;
+}
+.add_task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-icon img{
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+
+.add-icon img:hover{
+    cursor: pointer;
+    box-shadow: 0 0 15px 4px #878686;
+}
+
+/*стилі колонки*/
+.column-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    background-color: #f4f5f7; /* Світло-сірий фон */
+    border-radius: 20px;
+    height: fit-content;
+    min-height: 500px;
+}
+
+.column-wrapper.todo .column-title{
+    background-color: #546FFF;
+}
+.column-wrapper.in_progress .column-title{
+    background-color: #e6cb3d;
+}
+
+.column-wrapper.done .column-title{
+    background-color: #3f9f6d;
+}
+
+/* Заголовок колонки */
+.column-title {
+    padding: 16px;
+    margin: 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    border-radius: 20px 20px 0 0;
+    justify-content: space-between;
+}
+
+.task-count {
+    background: white;
+    padding: 3px 12px;
+    border-radius: 26px;
+    font-size: 20px;
+    color: black;
+}
+
+/* Область зі списком тасок */
+.column-content {
+    flex-grow: 1; /* Розтягується на всю висоту */
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background-color 0.2s ease;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Спеціальний стан, коли ми тримаємо таску НАД колонкою */
+.column-content.is-over {
+    background-color: #cbd5e0; /* Стає темнішою */
+}
+
+/* Повідомлення, якщо тасок немає */
+.empty-message {
+    color: #a0aec0;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    border: 2px dashed #cbd5e0;
+    padding: 20px;
+    border-radius: 8px;
+}
