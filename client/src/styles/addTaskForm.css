@@ -1,0 +1,62 @@
+.add-task-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    gap: 15px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ebf0f1;
+    border-radius: 8px;
+    background-color: #ebf0f1;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.form-group input:hover,
+.form-group textarea:hover {
+    background-color: #c8cdd1;
+}
+
+.description-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.description-group textarea {
+    flex-grow: 1;
+    resize: none;
+}
+
+.form-group label {
+    font-size: 20px;
+    color: grey;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.save-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #546FFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 23px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: auto;
+}

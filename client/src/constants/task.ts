@@ -1,5 +1,5 @@
 
-export type TaskStatus = 'todo'|'in_progress' |'done'
+export type TaskStatus = 'todo'|'in_progress' | 'on-hold' | 'done'
 
 export interface ITask {
     id: string;
@@ -7,5 +7,4 @@ export interface ITask {
     description?: string;
     deadline: string;
     status: TaskStatus;
-    isPriority: boolean;
 }
