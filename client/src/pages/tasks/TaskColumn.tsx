@@ -11,10 +11,9 @@ interface IColumnProps {
     id: string;
     title: string;
     tasks: ITask[];
-    onTogglePriority: (id: string) => void;
 }
 
-export const TaskColumn:FC<IColumnProps> = ({ id, title, tasks, onTogglePriority}) =>{
+export const TaskColumn:FC<IColumnProps> = ({ id, title, tasks}) =>{
 
     /*
      setNodeRef — це мітка, яку ми повісимо на div, щоб бібліотека його бачила
@@ -23,21 +22,19 @@ export const TaskColumn:FC<IColumnProps> = ({ id, title, tasks, onTogglePriority
 
     const { ref, isDropTarget } = useDroppable({ id: id });
 
-    const columnClassName = `column-content ${isDropTarget ? "is-over" : ""}`;
-
+    const wrapperClassName = `column-wrapper ${id} ${isDropTarget ? "column-shaking" : ""}`;
     return (
-        <div className={`column-wrapper ${id}`}>
+        <div ref={ref} className={wrapperClassName} id='board-container'>
             <h3 className="column-title">
                 {title}
                 <span className="task-count">{tasks.length}</span>
             </h3>
 
-            <div ref={ref} className={columnClassName}>
+            <div className="column-content">
                 {tasks.map((task) => (
                     <TaskCard
                         key={task.id}
                         task={task}
-                        onTogglePriority={onTogglePriority}
                     />
                 ))}
 

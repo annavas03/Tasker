@@ -1,54 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 /*Стилі сторінки*/
-.task-columns{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 80px;
+
+.task-columns-container {
     width: 100%;
-    padding: 35px;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
 }
-.add_task{
+.task-columns {
+    display: flex;
+    gap: 60px;
+    padding: 25px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
+    transition: gap 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+}
+
+.board-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/*хедер з модалкою*/
+.add-task{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 10px;
 }
 .add-icon img{
     width: 60px;
     height: 60px;
     border-radius: 60px;
+
 }
 
 .add-icon img:hover{
     cursor: pointer;
-    box-shadow: 0 0 15px 4px #878686;
+    box-shadow: 0 0 15px 4px #b8b7b7;
 }
 
 /*стилі колонки*/
 .column-wrapper {
+    flex: 0 0 450px;
+    width: 450px;
+
+    height: 100%;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
-    min-width: 300px;
-    background-color: #f4f5f7; /* Світло-сірий фон */
     border-radius: 20px;
-    height: fit-content;
-    min-height: 500px;
+    transition: all 0.3s ease;
+}
+.column-wrapper.column-shaking {
+    animation: column-shake 0.4s ease-in-out infinite;
+    background-color: #cbd5e0;
+    transform: scale(1.01);
+    z-index: 10;
 }
 
-.column-wrapper.todo .column-title{
-    background-color: #546FFF;
-}
-.column-wrapper.in_progress .column-title{
-    background-color: #e6cb3d;
-}
-
-.column-wrapper.done .column-title{
-    background-color: #3f9f6d;
-}
+.column-wrapper.todo .column-title { background-color: #546FFF; }
+.column-wrapper.in_progress .column-title {  background-color: #eab941; }
+.column-wrapper.done .column-title { background-color: #3f9f6d; }
+.column-wrapper.on-hold .column-title { background-color: #77777c; }
 
 /* Заголовок колонки */
 .column-title {
     padding: 16px;
     margin: 0;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 700;
     color: white;
     display: flex;
@@ -58,35 +83,178 @@
 
 .task-count {
     background: white;
-    padding: 3px 12px;
+    padding: 6px 16px 4px 16px;
     border-radius: 26px;
     font-size: 20px;
     color: black;
+    text-align: center;
 }
 
 /* Область зі списком тасок */
 .column-content {
-    flex-grow: 1; /* Розтягується на всю висоту */
-    padding: 12px;
+    flex-grow: 1;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     transition: background-color 0.2s ease;
     border-radius: 0 0 12px 12px;
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    min-height: 0;
 }
 
-/* Спеціальний стан, коли ми тримаємо таску НАД колонкою */
-.column-content.is-over {
-    background-color: #cbd5e0; /* Стає темнішою */
+/* Анімація shake */
+@keyframes column-shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(0.6deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-0.6deg); }
+    100% { transform: rotate(0deg); }
+}
+.column-wrapper.column-shaking .column-content {
+    background-color: #cbd5e0;
+    outline: 2px dashed #546FFF;
+    outline-offset: -4px;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Стилі карточок тасок */
+
+.task-card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #d8dadd;
+    border-radius: 10px;
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+}
+.column-wrapper.todo .task-card{background-color: #8397fb;}
+.column-wrapper.in_progress .task-card {background-color: #e8bf63;}
+.column-wrapper.done .task-card { background-color: #6cb18d;}
+.column-wrapper.on-hold .task-card{background-color: #a8a8aa}
+
+/*прострочені картки*/
+.task-card.overdue-red{
+    background-color: #dd6d6a !important;;
+}
+
+/*стилі начинки карточок*/
+.task-card-header{
+    font-size: 26px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+.task-description p{
+    word-break: break-word;
+    overflow-wrap: break-word;
+    padding-bottom: 15px;
+}
+
+/*Закладка з колонкою Done*/
+.done-tab {
+    position: fixed;
+    right: 0;
+    top: 40%;
+    z-index: 100;
+    flex: 0 0 60px;
+    height: 250px;
+    width: 50px;
+    background-color: #3f9f6d;
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.done-tab:hover {
+    background-color: #368a5e;
+    transition: 0.5s ease-in-out;
+    transform: translateX(-5px);
+}
+
+.done-tab span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+/*анімація появи колонки */
+.column-wrapper.done-active {
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px) scale(0.9);
+        flex-basis: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        flex-basis: 450px;
+    }
+}
+
+.task-columns-container.with-scroll .task-columns {
+    gap: 20px;
+}
+
+.task-columns-container.with-scroll .column-wrapper {
+    flex: 1 1 350px;
+    max-width: 450px;
+    min-width: 0;
+}
+
+.column-wrapper.done .column-title {
+    cursor: pointer;
+}
+
+/*Низ карточок*/
+.task-card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 2px dashed #ffffff;
+    font-weight: 500;
 }
 
 /* Повідомлення, якщо тасок немає */
 .empty-message {
     color: #a0aec0;
     text-align: center;
-    font-size: 14px;
+    font-size: 22px;
     margin-top: 20px;
-    border: 2px dashed #cbd5e0;
+    border: 3px dashed #cbd5e0;
     padding: 20px;
     border-radius: 8px;
 }
+
+/*Кастомний скролл*/
+
+.column-content::-webkit-scrollbar {
+    width: 10px;
+}
+.column-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.column-content::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+.column-content::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
